@@ -15,7 +15,11 @@ app.use(express.urlencoded({ extended: false }));
 app.get('/', (req, res) => res.render('index'));
 
 app.post('/weather', (req, res) => {
-  const cityName = req.body.cityName;
+  let cityName = req.body.cityName;
+  if (cityName[0] !== cityName[0].toUpperCase()) {
+    cityName = cityName.charAt(0).toUpperCase() + cityName.slice(1);
+  }
+
   const API_KEY = require('./sources/keys.json').API_KEY;
 
   axios
