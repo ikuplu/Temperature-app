@@ -27,8 +27,10 @@ app.post('/weather', (req, res) => {
       `https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${API_KEY}`,
     )
     .then(function (response) {
+      console.log(response.data);
       res.render('index', {
         weatherText: `The temperature in ${cityName} is ${response.data.main.temp}`,
+        weatherText2: `You probably feel it as ${response.data.main.feels_like}`,
       });
     })
     .catch(function (error) {
